@@ -1,0 +1,29 @@
+.task-list{
+    position: relative;
+    top: 40px;
+    margin: 0 auto;
+    max-width: 800px;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.ley{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.completed{
+    background-color: #3f51b5;
+    width: fit-content;
+    height: fit-content;
+    margin-right: 5px;
+    color: white;
+}
+.incompleted{
+    background-color: #e13872;
+    width: fit-content;
+    height: fit-content;
+    color: white;
+}

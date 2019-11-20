@@ -1,0 +1,22 @@
+
+<div class="task-list">
+    <div class="header">
+        <h1>All tasks</h1>
+        <div class="ley">
+            <mat-card class="completed">Completed</mat-card>
+            <mat-card class="incompleted">Incompleted</mat-card>
+        </div>
+    </div>
+    <hr />
+    <mat-chip-list aria-label="Fish selection" *ngIf="tasks.length > 0">
+        <mat-chip *ngFor="let task of tasks"  selected (click)="selectTask(task.id)">{{task.title}}</mat-chip>
+    </mat-chip-list>
+    <hr />
+    <br />
+    <div>
+        <h2>Task selected</h2>
+        <div *ngIf="selectedTask != null">
+            <mat-chip  >{{selectedTask.title}}</mat-chip>
+        </div>
+    </div>
+</div>
