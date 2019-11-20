@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RequesterService } from '../../requester.service'
+import { RequesterService } from '../../services/requester.service';
 
 @Component({
   selector: 'app-home',
@@ -10,36 +10,31 @@ export class HomeComponent implements OnInit {
 
   tasks = [];
   selectedTask = null;
+  loading = false;
 
-  constructor(public rq: RequesterService) { 
+  constructor(public rq: RequesterService) {}
+
+  ngOnInit() {
     this.allTasks();
   }
 
-  ngOnInit() {
-    
-  }
-
-  allTasks(){
+  allTasks() {
     this.rq.getTasks()
         .subscribe(resp => {
           this.tasks =  resp;
-          this.selectedTask =  resp[0];          
+          this.selectedTask =  resp[0];
         },
-        error => console.log('error',error)        
-  )};
+        error => console.log('error', error)
+  ); }
 
-  selectTask(id){
-   this.selectedTask = id;
-    console.log(id);
+  selectTask(id) {
+    this.loading = true;
     this.rq.getOneTasks(id)
         .subscribe(resp => {
           this.selectedTask =  resp;
-          console.log(this.selectedTask);
-          
+          this.loading = false;
         },
-        error => console.log('error',error)
-        )
-      
-        console.log('al final');
+        error => console.log('error', error)
+        );
       }
 }

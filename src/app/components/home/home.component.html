@@ -1,22 +1,24 @@
 
 <div class="task-list">
-    <div class="header">
+    <div class="header" fxFlexFill fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
         <h1>All tasks</h1>
-        <div class="ley">
-            <mat-card class="completed">Completed</mat-card>
-            <mat-card class="incompleted">Incompleted</mat-card>
+        <div class="ley" fxLayout="row" fxLayoutAlign="end center" fxLayout.xs="column">
+                <h5>Task selected: </h5>
+                <p *ngIf="loading"> Loading ...</p>
+                <div *ngIf="!loading && selectedTask != null">
+                    <mat-chip  >{{selectedTask.title}}</mat-chip>
+                </div>
         </div>
     </div>
     <hr />
-    <mat-chip-list aria-label="Fish selection" *ngIf="tasks.length > 0">
-        <mat-chip *ngFor="let task of tasks"  selected (click)="selectTask(task.id)">{{task.title}}</mat-chip>
-    </mat-chip-list>
+    <mat-nav-list class="list">
+        <mat-list-item *ngFor="let task of tasks" (click)="selectTask(task.id)" [ngClass]="(task.id==selectedTask.id)?'selected':'noselected'" >
+            <a matLine >{{ task.id }} - {{ task.title }}</a>
+            <mat-chip-list>
+                <mat-chip color="primary" *ngIf="task.completed" selected>Completed</mat-chip>
+                <mat-chip color="accent" *ngIf="!task.completed" selected>Incompleted</mat-chip>
+            </mat-chip-list>
+        </mat-list-item>
+    </mat-nav-list>
     <hr />
-    <br />
-    <div>
-        <h2>Task selected</h2>
-        <div *ngIf="selectedTask != null">
-            <mat-chip  >{{selectedTask.title}}</mat-chip>
-        </div>
-    </div>
 </div>

@@ -4,14 +4,13 @@
     margin: 0 auto;
     max-width: 800px;
 }
+.list{
+    max-height: 500px;
+    overflow-y: scroll;
+}
 .header{
     display: flex;
     justify-content: space-between;
-    align-items: center;
-}
-.ley{
-    display: flex;
-    justify-content: end;
     align-items: center;
 }
 .completed{
@@ -27,3 +26,16 @@
     height: fit-content;
     color: white;
 }
+.selected{
+    background-color: #3f51b5;
+    color: #fff;
+    border-radius: 5px;
+
+    &:hover{
+        background-color: #3f51b5;
+    }
+}
+.noselected{
+    background-color: inherit;
+}
+
